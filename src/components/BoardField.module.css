@@ -27,6 +27,30 @@
     background: #e5e5e5;
 }
 
+.hoverPlayer1:hover::before,
+.hoverPlayer2:hover::before,
+.hoverPlayer1:focus::before,
+.hoverPlayer2:focus::before  {
+    font-size: inherit;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+}
+
+.hoverPlayer1:hover::before,
+.hoverPlayer1:focus::before {
+    content: "X"; 
+    color: red;
+}
+
+.hoverPlayer2:hover::before,
+.hoverPlayer2:focus::before  {
+    content: "O"; 
+    color: blue;
+}
+  
 .player1 {
     color: red;
     border-color:  red;

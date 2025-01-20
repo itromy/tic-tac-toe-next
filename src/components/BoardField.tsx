@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './BoardField.module.css';
-import { FieldSymbol } from '@/types/types';
+import { FieldSymbol, Player } from '@/types/types';
 import { useGame } from '@/context/GameContext';
 
 export type BoardFieldProps = {
@@ -9,7 +9,7 @@ export type BoardFieldProps = {
 }
 
 const BoardField: React.FC<BoardFieldProps> = ({ type, index }) => {
-    const { makeMove, winPattern } = useGame();
+    const { makeMove, winPattern, player } = useGame();
 
     const handleOnClick = () => {
         makeMove(index);
@@ -28,17 +28,25 @@ const BoardField: React.FC<BoardFieldProps> = ({ type, index }) => {
 
     const getButtonClass = () => {
         let buttonClass = `${styles.button}`;
-    
+
         if (type === FieldSymbol.Player1) {
             buttonClass += ` ${styles.player1}`;
-        } else {
+        }
+        
+        if (type === FieldSymbol.Player2) {
             buttonClass += ` ${styles.player2}`;
         }
-    
+
+        // hover effect classes
+        if (type === FieldSymbol.None) {
+            buttonClass += player === Player.Player1 ? ` ${styles.hoverPlayer1}` : player === Player.Player2 ? ` ${styles.hoverPlayer2}` : '';
+        }
+
+        // winner pattern marker
         if (winPattern.includes(index)) {
             buttonClass += ` ${styles.winner}`;
         }
-    
+
         return buttonClass;
     };
 
