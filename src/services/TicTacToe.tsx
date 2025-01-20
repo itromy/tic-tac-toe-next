@@ -1,13 +1,13 @@
-import { Board, FieldSymbol, Player } from "@/types/types";
+import { Board, FieldSymbol, Player, TicTacToeInterface } from "@/types/types";
 
-export default class TicTacToe {
-    private board: Board;
-    private currentPlayer: Player;
+export default class TicTacToe implements TicTacToeInterface {
+    private board : Board = [];
+    private currentPlayer = Player.Player1;
     private winner: Player | undefined;
     private isGameIsOver = false;
-
+    
     constructor() {
-        this.resetGame(); // Initialize the game state using resetGame
+        this.resetGame(); 
     }
 
     getBoard(): Board {

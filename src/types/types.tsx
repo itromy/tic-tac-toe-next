@@ -10,3 +10,12 @@ export enum FieldSymbol {
 }
 
 export type Board = Array<FieldSymbol>
+
+export interface TicTacToeInterface {
+    getBoard: () => Board;
+    getCurrentPlayer: () => Player;
+    getWinner: () => Player | undefined,
+    getIsGameOver: () => boolean;
+    makeMove: (index: number) => void; 
+    resetGame: () => void
+}
