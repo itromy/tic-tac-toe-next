@@ -1,19 +1,26 @@
+
+.header {
+    line-height: 1.4;
+}
+
+.headline {
+    font-size: 20px;
+}
+
+.text {
+    font-size: 12px;
+}
+
 .button {
     background: white;
     color: black;
-    font-size: 20px;
+    font-size: 14px;
     font-family: Arial, Helvetica, sans-serif;
     padding: 5px 10px;
-    border: none;
-    cursor: pointer;
 }
 
 .player1 {
     color: red;
-}
-
-.text {
-    line-height: 1.4;
 }
 
 .player2 {
@@ -30,5 +37,20 @@
     }
     50% {
         opacity: 0;
+    }
+}
+
+@media (min-width: 480px) {
+    .headline {
+        font-size: 30px;
+    }
+
+    .button {
+        font-size: 16px; 
+        padding: 10px 15px;
+    }
+
+    .text {
+        font-size: 16px;
     }
 }

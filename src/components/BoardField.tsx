@@ -15,10 +15,23 @@ const BoardField: React.FC<BoardFieldProps> = ({ type, index }) => {
         makeMove(index);
     }
 
+    const getAriaLabel = () => {
+        if (type === FieldSymbol.Player1) {
+            return "Field of Player 1"
+        }
+
+        if (type === FieldSymbol.Player2) {
+            return "Field of Player 2"
+        }
+
+        return "Free to choose"
+    }
+
     return (
         <div className={styles.field}>
-            <button 
-                onClick={handleOnClick} 
+            <button
+                aria-label={getAriaLabel()}
+                onClick={handleOnClick}
                 className={`${styles.button} ${type === FieldSymbol.Player1 ? styles.player1 : styles.player2}`}
             >
                 {type}

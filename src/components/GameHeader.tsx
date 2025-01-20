@@ -1,6 +1,6 @@
 import { useGame } from "@/context/GameContext";
 import { Player } from "@/types/types";
-import  styles from './GameHeader.module.css';
+import styles from './GameHeader.module.css';
 
 const GameHeader = () => {
     const { player, winner, isGameOver, resetGame } = useGame();
@@ -23,14 +23,14 @@ const GameHeader = () => {
     const renderWinner = () => {
         if (winner) {
             return (
-                <p className={`${styles.blink} ${winner === Player.Player1 ? styles.player1 : styles.player2}`}>
+                <p className={`${styles.text} ${styles.blink} ${winner === Player.Player1 ? styles.player1 : styles.player2}`}>
                     Winner: {getPlayerName()}
                 </p>
             );
         }
 
         if (isGameOver) {
-            return <p className={styles.blink}>Game is over</p>;
+            return <p className={`${styles.text} ${styles.blink}`}>Game is over</p>;
         }
 
         return null;
@@ -41,13 +41,11 @@ const GameHeader = () => {
     };
 
     return (
-        <div>
-            <h1>Tic Tac Toe</h1>
-            <div>
-                {renderWinner()}
-                {renderResetGame()}
-                {renderCurrentPlayer()}
-            </div>
+        <div className={styles.header}>
+            <h1 className={styles.headline}>Tic Tac Toe</h1>
+            {renderResetGame()}
+            {renderWinner()}
+            {renderCurrentPlayer()}
         </div>
     );
 };
