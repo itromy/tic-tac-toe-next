@@ -21,6 +21,11 @@
     padding: 5px 10px;
 }
 
+.button:hover,
+.button:focus {
+    background: #e5e5e5;
+}
+
 .player1 {
     color: red;
 }
