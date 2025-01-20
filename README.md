@@ -28,3 +28,4 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 - Better linter rules
 - Cleanup configs
 - Complete readme
+- favicon
