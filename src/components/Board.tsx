@@ -1,19 +1,29 @@
-import React from 'react';
-import BoardField from './BoardField';
+import React, { useEffect, useState } from 'react';
+import BoardField, { BoardFieldTypes } from './BoardField';
 import * as classes from './Board.module.css';
+import { Board } from '@/types/types';
+import { useGame } from '@/context/GameContext';
 
 const Board: React.FC = () => {
+    const { board } = useGame();
+    const [boardState, setBoardState] = useState<Board>([]);
 
-    const numberFields = Array.from({ length: 9 }, (_, index) => index + 1);
-
+    useEffect(() => {
+        setBoardState(board);
+    }, [board]);
 
     return (
-        <div className={classes.board}>
-             {numberFields.map((value, index) => (
-                <BoardField key={index} value={value} />
-            ))}
+        <div>
+            <div className={classes.board}>
+                {
+                    boardState.map((value, index) =>  {
+                        console.log(index, value);
+                        return  <BoardField type={value} key={index} />;
+                    })   
+                }
+            </div>
         </div>
-    )
-}
+    );
+};
 
 export default Board;

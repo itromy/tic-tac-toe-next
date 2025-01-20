@@ -1,3 +1,5 @@
+import Board from "@/components/Board";
+import TicTacToeGame from "@/containers/TicTacToeGame";
 import Head from "next/head";
 
 
@@ -10,7 +12,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
-        MAIN
+        <TicTacToeGame/>
       </main>
     </>
   );
