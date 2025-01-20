@@ -16,15 +16,14 @@ const BoardField: React.FC<BoardFieldProps> = ({ type, index }) => {
     }
 
     const getAriaLabel = () => {
-        if (type === FieldSymbol.Player1) {
-            return "Field of Player 1"
+        switch (type) {
+            case FieldSymbol.Player1:
+                return "Field of Player 1 (X)";
+            case FieldSymbol.Player2:
+                return "Field of Player 2 (O)";
+            default:
+                return "Free to choose";
         }
-
-        if (type === FieldSymbol.Player2) {
-            return "Field of Player 2"
-        }
-
-        return "Free to choose"
     }
 
     return (
