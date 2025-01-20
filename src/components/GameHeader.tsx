@@ -1,6 +1,6 @@
 import { useGame } from "@/context/GameContext";
 import { Player } from "@/types/types";
-import * as styles from './GameHeader.module.css';
+import  styles from './GameHeader.module.css';
 
 const GameHeader = () => {
     const { player, winner, isGameOver, resetGame } = useGame();

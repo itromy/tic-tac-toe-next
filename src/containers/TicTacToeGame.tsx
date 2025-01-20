@@ -1,7 +1,7 @@
 import Board from "@/components/Board";
 import GameHeader from "@/components/GameHeader";
 import { GameProvider } from "@/context/GameContext";
-import * as styles from "./TicTacToeGame.module.css";
+import styles from "./TicTacToeGame.module.css";
 
 const TicTacToeGame: React.FC = () => {
     return (
