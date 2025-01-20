@@ -5,8 +5,8 @@ export enum Player {
 
 export enum FieldSymbol {
     None = "",
-    Cross = "X",
-    Circle = "O",
+    Player1 = "X",
+    Player2 = "O",
 }
 
 export type Board = Array<FieldSymbol>

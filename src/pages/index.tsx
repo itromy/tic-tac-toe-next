@@ -1,4 +1,3 @@
-import Board from "@/components/Board";
 import TicTacToeGame from "@/containers/TicTacToeGame";
 import Head from "next/head";
 

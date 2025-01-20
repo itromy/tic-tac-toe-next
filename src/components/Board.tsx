@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import BoardField, { BoardFieldTypes } from './BoardField';
+import BoardField from './BoardField';
 import * as classes from './Board.module.css';
 import { Board } from '@/types/types';
 import { useGame } from '@/context/GameContext';
@@ -17,8 +17,7 @@ const Board: React.FC = () => {
             <div className={classes.board}>
                 {
                     boardState.map((value, index) =>  {
-                        console.log(index, value);
-                        return  <BoardField type={value} key={index} />;
+                        return  <BoardField index={ index}type={value} key={index} />;
                     })   
                 }
             </div>

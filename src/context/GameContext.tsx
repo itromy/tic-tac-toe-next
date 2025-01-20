@@ -1,26 +1,37 @@
 import TicTacToe from '@/services/TicTacToe';
-import { Board } from '@/types/types';
+import { Board, Player } from '@/types/types';
 import React, { createContext, useContext, useState, ReactNode, useEffect } from 'react';
 
 type GameContextType = {
     board: Board;
+    player: Player;
+    makeMove: (index: number) => void;
 };
 
 const GameContext = createContext<GameContextType | undefined>(undefined);
 
+const game = new TicTacToe();
+
 export const GameProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
-    const [board, setBoard] = useState<Board>([]); // Initialisiere als leeres Array
+    const [board, setBoard] = useState<Board>([]);
+    const [player, setPlayer] = useState<Player>(Player.Player1);
 
     useEffect(() => {
-        const game = new TicTacToe();
         setBoard(game.getBoard());
+        setPlayer(game.getCurrentPlayer());
     }, []);
 
     return (
-        <GameContext.Provider value={{ board }}>
+        <GameContext.Provider value={{ board, player, makeMove}}>
             {children}
         </GameContext.Provider>
     );
+
+    function makeMove(index: number) {
+        game.makeMove(index);
+        setBoard(game.getBoard());
+        setPlayer(game.getCurrentPlayer()); 
+    }
 };
 
 export const useGame = (): GameContextType => {

@@ -6,8 +6,8 @@ export default class TicTacToe {
 
     constructor() {
         this.board = Array(9).fill(FieldSymbol.None);
-        this.board[0] = FieldSymbol.Cross;
-        this.board[3] = FieldSymbol.Circle;
+        this.board[0] = FieldSymbol.Player1;
+        this.board[3] = FieldSymbol.Player2;
 
         this.currentPlayer = Player.Player1;
     }
@@ -18,5 +18,16 @@ export default class TicTacToe {
 
     getCurrentPlayer(): Player {
         return this.currentPlayer;
+    }
+
+    makeMove(index: number) {
+        if(this.currentPlayer === Player.Player1) {
+            this.board[index] = FieldSymbol.Player1
+        }
+        else {
+            this.board[index] = FieldSymbol.Player2
+        }
+
+        this.currentPlayer = this.currentPlayer === Player.Player1 ? Player.Player2 : Player.Player1;
     }
 }
