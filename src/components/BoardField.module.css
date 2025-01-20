@@ -62,12 +62,16 @@
 }
 
 .winner {
-    border-width: 4px;
+    border-width: 2px;
     border-style: solid;
 }
 
 @media screen and (min-width: 800px) {
     .button {
         font-size: 86px;
+    }
+
+    .winner {
+        border-width: 4px;
     }
 }
