@@ -4,13 +4,10 @@ export default class TicTacToe {
     private board: Board;
     private currentPlayer: Player;
     private winner: Player | undefined;
+    private isGameIsOver = false;
 
     constructor() {
-        this.board = Array(9).fill(FieldSymbol.None);
-        this.board[0] = FieldSymbol.Player1;
-        this.board[3] = FieldSymbol.Player2;
-
-        this.currentPlayer = Player.Player1;
+        this.resetGame(); // Initialize the game state using resetGame
     }
 
     getBoard(): Board {
@@ -25,37 +22,47 @@ export default class TicTacToe {
         return this.winner;
     }
 
+    getIsGameOver(): boolean {
+        return this.isGameIsOver;
+    }
+
     makeMove(index: number) {
-        if(!!this.winner) {
+        if (this.isGameIsOver) {
             console.log('Game is over');
             return;
         }
 
-        if(this.board[index] !== FieldSymbol.None) {
+        if (this.board[index] !== FieldSymbol.None) {
             console.log('Field already taken');
             return;
         }
 
-        if(this.currentPlayer === Player.Player1) {
-            this.board[index] = FieldSymbol.Player1
-        }
-        else {
-            this.board[index] = FieldSymbol.Player2
-        }
+        // Set the move
+        this.board[index] = this.currentPlayer === Player.Player1 ? FieldSymbol.Player1 : FieldSymbol.Player2;
 
-        if(this.checkForWinner()) {
+        // Check for winner
+        if (this.checkForWinner()) {
             this.winner = this.currentPlayer;
-            console.log('player won:', this.currentPlayer)
+            this.isGameIsOver = true;
+            console.log(`Player ${this.currentPlayer} won the game!`);
             return;
-       }
+        }
 
-       this.currentPlayer = this.currentPlayer === Player.Player1 ? Player.Player2 : Player.Player1;
-       console.log('is your turn ' + this.currentPlayer);
+        // Check if game is a draw
+        if (this.checkIsGameOver()) {
+            this.isGameIsOver = true;
+            console.log('Game is a draw!');
+            return;
+        }
+
+        // Switch to the other player
+        this.currentPlayer = this.currentPlayer === Player.Player1 ? Player.Player2 : Player.Player1;
+        console.log(`It's now Player ${this.currentPlayer}'s turn.`);
     }
 
     private checkForWinner(): boolean {
         const winPatterns = [
-            // horiziontal
+            // horizontal
             [0, 1, 2],
             [3, 4, 5],
             [6, 7, 8],
@@ -65,19 +72,31 @@ export default class TicTacToe {
             [2, 5, 8],
             // diagonal
             [0, 4, 8],
-            [2, 4, 6]
+            [2, 4, 6],
         ];
 
-        for (const pattern of winPatterns) {
-            const [a, b, c] = pattern;
-
-            if (this.board[a] !== FieldSymbol.None 
-                && this.board[a] === this.board[b]
-                && this.board[a] === this.board[c]) {
+        for (const [a, b, c] of winPatterns) {
+            if (
+                this.board[a] !== FieldSymbol.None &&
+                this.board[a] === this.board[b] &&
+                this.board[a] === this.board[c]
+            ) {
                 return true;
             }
         }
 
         return false;
+    }
+
+    private checkIsGameOver(): boolean {
+        return this.board.every((field) => field !== FieldSymbol.None);
+    }
+
+    resetGame() {
+        console.log('Resetting the game...');
+        this.board = Array(9).fill(FieldSymbol.None);
+        this.currentPlayer = Player.Player1;
+        this.winner = undefined;
+        this.isGameIsOver = false;
     }
 }

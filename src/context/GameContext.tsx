@@ -1,11 +1,14 @@
+import React, { createContext, useContext, useState, ReactNode, useEffect } from 'react';
 import TicTacToe from '@/services/TicTacToe';
 import { Board, Player } from '@/types/types';
-import React, { createContext, useContext, useState, ReactNode, useEffect } from 'react';
 
 type GameContextType = {
     board: Board;
     player: Player;
+    winner: Player | undefined;
+    resetGame: () => void;
     makeMove: (index: number) => void;
+    isGameOver: boolean;
 };
 
 const GameContext = createContext<GameContextType | undefined>(undefined);
@@ -16,24 +19,35 @@ export const GameProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     const [board, setBoard] = useState<Board>([]);
     const [player, setPlayer] = useState<Player>(Player.Player1);
     const [winner, setWinner] = useState<Player | undefined>();
+    const [isGameOver, setIsGameOver] = useState<boolean>(false);
 
     useEffect(() => {
-        setBoard(game.getBoard());
-        setPlayer(game.getCurrentPlayer());
+        updateGame();
     }, []);
 
-    return (
-        <GameContext.Provider value={{ board, player, winner, makeMove}}>
-            {children}
-        </GameContext.Provider>
-    );
-
-    function makeMove(index: number) {
+    const makeMove = (index: number) => {
         game.makeMove(index);
+        updateGame();
+    };
+
+    const resetGame = () => {
+        game.resetGame();
+        updateGame();
+    };
+
+    const updateGame = () => {
         setBoard(game.getBoard());
         setPlayer(game.getCurrentPlayer());
         setWinner(game.getWinner());
-    }
+        setIsGameOver(game.getIsGameOver());
+    };
+
+
+    return (
+        <GameContext.Provider value={{ board, player, winner, isGameOver, makeMove, resetGame }}>
+            {children}
+        </GameContext.Provider>
+    );
 };
 
 export const useGame = (): GameContextType => {

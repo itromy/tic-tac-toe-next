@@ -2,14 +2,14 @@ import { useGame } from "@/context/GameContext";
 import { Player } from "@/types/types";
 
 const GameHeader = () => {
-    const { player, winner } = useGame();
+    const { player, winner, isGameOver, resetGame} = useGame();
    
     function getPlayerName() {
         return player === Player.Player1 ? 'Player 1 (X)' : 'Player 2 (O)';
     }
 
     function renderCurrentPlayer() {
-        if(!!winner) {
+        if(isGameOver) {
             return;
         }
         
@@ -26,9 +26,18 @@ const GameHeader = () => {
         }  
     }
 
+    function renderResetGame() {
+        if(!isGameOver) {
+            return;
+        }
+
+        return <button onClick={resetGame}>Reset Game</button>
+    }
+
     return (
         <div>
             {renderWinner()}
+            {renderResetGame()}
             {renderCurrentPlayer()}
         </div>
     );
