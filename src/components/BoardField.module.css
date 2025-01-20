@@ -29,10 +29,17 @@
 
 .player1 {
     color: red;
+    border-color:  red;
 }
 
 .player2 {
     color: blue;
+    border-color:  blue;
+}
+
+.winner {
+    border-width: 4px;
+    border-style: solid;
 }
 
 @media screen and (min-width: 800px) {

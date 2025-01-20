@@ -13,6 +13,7 @@ describe('TicTacToe', () => {
         expect(game.getCurrentPlayer()).toBe(Player.Player1);
         expect(game.getWinner()).toBeUndefined();
         expect(game.getIsGameOver()).toBe(false);
+        expect(game.getWinPattern()).toEqual([]);
     });
 
     test('valid move of player 1 (set sign, switch player)', () => {
@@ -48,6 +49,7 @@ describe('TicTacToe', () => {
 
         expect(game.getWinner()).toBe(Player.Player1);
         expect(game.getIsGameOver()).toBe(true);
+        expect(game.getWinPattern()).toEqual([0,1,2]);
     });
 
     test('detects a vertical win for Player 2', () => {
@@ -68,6 +70,7 @@ describe('TicTacToe', () => {
 
         expect(game.getWinner()).toBe(Player.Player2);
         expect(game.getIsGameOver()).toBe(true);
+        expect(game.getWinPattern()).toEqual([1,4,7]);
     });
 
     test('detects a diagonal win for Player 1', () => {
@@ -87,6 +90,7 @@ describe('TicTacToe', () => {
 
         expect(game.getWinner()).toBe(Player.Player1);
         expect(game.getIsGameOver()).toBe(true);
+        expect(game.getWinPattern()).toEqual([0,4,8]);
     });
 
     test('detects all fields are filled without a winner', () => {
@@ -110,6 +114,7 @@ describe('TicTacToe', () => {
         
         expect(game.getWinner()).toBeUndefined();
         expect(game.getIsGameOver()).toBe(true);
+        expect(game.getWinPattern()).toEqual([]);
     });
 
     test('prevents further moves after the game is won', () => {
@@ -142,5 +147,6 @@ describe('TicTacToe', () => {
         expect(game.getCurrentPlayer()).toBe(Player.Player1);
         expect(game.getWinner()).toBeUndefined();
         expect(game.getIsGameOver()).toBe(false);
+        expect(game.getWinPattern()).toEqual([]);
     });
 });

@@ -9,6 +9,7 @@ type GameContextType = {
     resetGame: () => void;
     makeMove: (index: number) => void;
     isGameOver: boolean;
+    winPattern: number[];
 };
 
 const GameContext = createContext<GameContextType | undefined>(undefined);
@@ -19,6 +20,7 @@ export const GameProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     const [board, setBoard] = useState<Board>([]);
     const [player, setPlayer] = useState<Player>(Player.Player1);
     const [winner, setWinner] = useState<Player | undefined>();
+    const [winPattern, setWinPattern] = useState<number[]>([]);
     const [isGameOver, setIsGameOver] = useState<boolean>(false);
 
     useEffect(() => {
@@ -40,10 +42,11 @@ export const GameProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
         setPlayer(game.getCurrentPlayer());
         setWinner(game.getWinner());
         setIsGameOver(game.getIsGameOver());
+        setWinPattern(game.getWinPattern());
     };
 
     return (
-        <GameContext.Provider value={{ board, player, winner, isGameOver, makeMove, resetGame }}>
+        <GameContext.Provider value={{ board, player, winner, isGameOver, winPattern, makeMove, resetGame }}>
             {children}
         </GameContext.Provider>
     );

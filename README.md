@@ -25,7 +25,6 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 - Better accessible UI (colors, fonts, no animations)
 - Test the components and containers (e.g., with React Testing Library)
 - Global use of colors and breakpoints
-- Highlight the fields that lead to the win
 - Better linter rules
 - Cleanup configs
 - Complete readme

@@ -17,5 +17,6 @@ export interface TicTacToeInterface {
     getWinner: () => Player | undefined,
     getIsGameOver: () => boolean;
     makeMove: (index: number) => void; 
-    resetGame: () => void
+    resetGame: () => void;
+    getWinPattern: () => Array<number>,
 }

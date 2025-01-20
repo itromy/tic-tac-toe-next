@@ -5,6 +5,7 @@ export default class TicTacToe implements TicTacToeInterface {
     private currentPlayer = Player.Player1;
     private winner: Player | undefined;
     private isGameIsOver = false;
+    private winPattern: number[] = [];
     
     constructor() {
         this.resetGame(); 
@@ -24,6 +25,10 @@ export default class TicTacToe implements TicTacToeInterface {
 
     getIsGameOver(): boolean {
         return this.isGameIsOver;
+    }
+
+    getWinPattern(): Array<number> {
+        return this.winPattern;
     }
 
     makeMove(index: number) {
@@ -81,6 +86,7 @@ export default class TicTacToe implements TicTacToeInterface {
                 this.board[a] === this.board[b] &&
                 this.board[a] === this.board[c]
             ) {
+                this.winPattern = [a, b, c];
                 return true;
             }
         }
@@ -98,5 +104,6 @@ export default class TicTacToe implements TicTacToeInterface {
         this.currentPlayer = Player.Player1;
         this.winner = undefined;
         this.isGameIsOver = false;
+        this.winPattern = [];
     }
 }

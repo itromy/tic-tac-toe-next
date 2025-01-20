@@ -9,7 +9,7 @@ export type BoardFieldProps = {
 }
 
 const BoardField: React.FC<BoardFieldProps> = ({ type, index }) => {
-    const { makeMove } = useGame();
+    const { makeMove, winPattern } = useGame();
 
     const handleOnClick = () => {
         makeMove(index);
@@ -26,12 +26,28 @@ const BoardField: React.FC<BoardFieldProps> = ({ type, index }) => {
         }
     }
 
+    const getButtonClass = () => {
+        let buttonClass = `${styles.button}`;
+    
+        if (type === FieldSymbol.Player1) {
+            buttonClass += ` ${styles.player1}`;
+        } else {
+            buttonClass += ` ${styles.player2}`;
+        }
+    
+        if (winPattern.includes(index)) {
+            buttonClass += ` ${styles.winner}`;
+        }
+    
+        return buttonClass;
+    };
+
     return (
         <div className={styles.field}>
             <button
                 aria-label={getAriaLabel()}
                 onClick={handleOnClick}
-                className={`${styles.button} ${type === FieldSymbol.Player1 ? styles.player1 : styles.player2}`}
+                className={getButtonClass()}
             >
                 {type}
             </button>
