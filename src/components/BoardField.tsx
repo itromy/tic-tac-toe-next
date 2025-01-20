@@ -1,5 +1,5 @@
 import React from 'react';
-import * as classes from './BoardField.module.css';
+import styles from './BoardField.module.css';
 import { FieldSymbol } from '@/types/types';
 import { useGame } from '@/context/GameContext';
 
@@ -11,18 +11,19 @@ export type BoardFieldProps = {
 const BoardField: React.FC<BoardFieldProps> = ({ type, index }) => {
     const { makeMove } = useGame();
 
-    function renderSymbol() {
-        return type;
-    }
-
-    function handleOnClick() {
-        makeMove(index)
+    const handleOnClick = () => {
+        makeMove(index);
     }
 
     return (
-        <button onClick={handleOnClick} className={classes.field}>
-            {renderSymbol()}
-        </button>
+        <div className={styles.field}>
+            <button 
+                onClick={handleOnClick} 
+                className={`${styles.button} ${type === FieldSymbol.Player1 ? styles.player1 : styles.player2}`}
+            >
+                {type}
+            </button>
+        </div>
     );
 };
 

@@ -1,0 +1,22 @@
+body {
+    background: rgb(47, 44, 44);
+    text-align: center;
+    font-family: 'Press Start 2P', cursive;
+}
+
+main {
+  max-width: 1000px;
+  margin: auto;
+  color: white;
+}
+
+button {
+    all: unset;
+    padding: 0;
+    margin: 0;
+    font-family: inherit;
+    font-size: 100%;
+    cursor: pointer;
+    background: none;
+    border: none;
+}

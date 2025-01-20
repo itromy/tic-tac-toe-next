@@ -1,7 +1,9 @@
 .board {
-    display: flex;
-    flex-wrap: wrap;
-    width: 310px;
-    height: 310px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
     gap: 2px;
+    margin: 50px auto;
+    width: 100%;
+    max-width: 600px;
+    box-sizing: border-box;
 }

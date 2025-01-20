@@ -1,12 +1,15 @@
 import Board from "@/components/Board";
 import GameHeader from "@/components/GameHeader";
 import { GameProvider } from "@/context/GameContext";
+import * as styles from "./TicTacToeGame.module.css";
 
 const TicTacToeGame: React.FC = () => {
     return (
         <GameProvider>
-            <GameHeader/>
-            <Board/>
+            <div className={styles.wrapper}>
+                <GameHeader />
+                <Board />
+            </div>
         </GameProvider>
     );
 };

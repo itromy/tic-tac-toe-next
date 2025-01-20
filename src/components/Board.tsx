@@ -13,14 +13,10 @@ const Board: React.FC = () => {
     }, [board]);
 
     return (
-        <div>
-            <div className={classes.board}>
-                {
-                    boardState.map((value, index) =>  {
-                        return  <BoardField index={ index}type={value} key={index} />;
-                    })   
-                }
-            </div>
+        <div className={classes.board}>
+            {boardState.map((value, index) => (
+                <BoardField key={index} index={index} type={value} />
+            ))}
         </div>
     );
 };

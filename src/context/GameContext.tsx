@@ -42,7 +42,6 @@ export const GameProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
         setIsGameOver(game.getIsGameOver());
     };
 
-
     return (
         <GameContext.Provider value={{ board, player, winner, isGameOver, makeMove, resetGame }}>
             {children}
