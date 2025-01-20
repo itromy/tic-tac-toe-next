@@ -1,18 +1,35 @@
 import { useGame } from "@/context/GameContext";
 import { Player } from "@/types/types";
-import { useEffect, useState } from "react";
 
 const GameHeader = () => {
-    const { player } = useGame();
-    const [playerState, setPlayerState] = useState<Player>(player);
+    const { player, winner } = useGame();
+   
+    function getPlayerName() {
+        return player === Player.Player1 ? 'Player 1 (X)' : 'Player 2 (O)';
+    }
 
-    useEffect(() => {
-        setPlayerState(player); 
-    }, [player]);
+    function renderCurrentPlayer() {
+        if(!!winner) {
+            return;
+        }
+        
+        return (
+            <span>
+                It is your turn {getPlayerName()}
+            </span>
+       )
+    }
+
+    function renderWinner() {
+        if(!!winner) {
+            return (<div>Winner: {getPlayerName()}</div>)
+        }  
+    }
 
     return (
         <div>
-            It is your turn {playerState === Player.Player1 ? 'Player 1 (X)' : 'Player 2 (O)'}
+            {renderWinner()}
+            {renderCurrentPlayer()}
         </div>
     );
 };

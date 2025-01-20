@@ -15,6 +15,7 @@ const game = new TicTacToe();
 export const GameProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
     const [board, setBoard] = useState<Board>([]);
     const [player, setPlayer] = useState<Player>(Player.Player1);
+    const [winner, setWinner] = useState<Player | undefined>();
 
     useEffect(() => {
         setBoard(game.getBoard());
@@ -22,7 +23,7 @@ export const GameProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     }, []);
 
     return (
-        <GameContext.Provider value={{ board, player, makeMove}}>
+        <GameContext.Provider value={{ board, player, winner, makeMove}}>
             {children}
         </GameContext.Provider>
     );
@@ -30,7 +31,8 @@ export const GameProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     function makeMove(index: number) {
         game.makeMove(index);
         setBoard(game.getBoard());
-        setPlayer(game.getCurrentPlayer()); 
+        setPlayer(game.getCurrentPlayer());
+        setWinner(game.getWinner());
     }
 };
 
