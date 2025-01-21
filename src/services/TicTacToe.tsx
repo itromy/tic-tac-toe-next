@@ -53,10 +53,10 @@ export default class TicTacToe implements TicTacToeInterface {
             return;
         }
 
-        // Check if game is a draw
+        // Game is over
         if (this.checkIsGameOver()) {
             this.isGameIsOver = true;
-            console.log('Game is a draw!');
+            console.log('Game is a over!');
             return;
         }
 
