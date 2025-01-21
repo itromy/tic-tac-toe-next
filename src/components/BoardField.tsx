@@ -52,12 +52,17 @@ const BoardField: React.FC<BoardFieldProps> = ({ type, index }) => {
 
     return (
         <div className={styles.field}>
+            {
+                /* by a button is navigable by keyboard */
+            }
             <button
                 aria-label={getAriaLabel()}
                 onClick={handleOnClick}
                 className={getButtonClass()}
             >
-                {type}
+                <span aria-hidden="true">
+                    {type}
+                </span>
             </button>
         </div>
     );
