@@ -3,7 +3,7 @@ name: Deploy Next.js App to GitHub Pages
 on:
   push:
     branches:
-      - main
+      - main  # Deploy only when changes are pushed to the 'main' branch
 
 jobs:
   build-and-deploy:
@@ -24,11 +24,9 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      # Step 4: Build and export the Next.js app
-      - name: Build and export
-        run: |
-          npm run build
-          npx next export
+      # Step 4: Build the Next.js app (includes static export)
+      - name: Build the app
+        run: npm run build
 
       # Step 5: Deploy to GitHub Pages
       - name: Deploy to GitHub Pages
@@ -36,3 +34,4 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./out
+          publish_branch: gh-pages
